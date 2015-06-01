@@ -48,6 +48,14 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('roles', function($ruta,$peticion,$roles,$redirect)
+{
+  
+    $roles = explode("-", $roles);
+    if(!in_array(Auth::user()->role_id, $roles))
+        return Redirect::to($redirect);
+        
+});
 
 Route::filter('auth.basic', function()
 {
